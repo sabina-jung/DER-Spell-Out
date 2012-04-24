@@ -1,4 +1,4 @@
-# DER Dump
+# DER Spell Out
 Show the raw DER data of a base64-encoded file. 
 Outputs a sequence of fields without syntax.
 

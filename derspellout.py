@@ -15,7 +15,9 @@ args = parser.parse_args()
 
 # configure logging
 logging_levels = [logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG]
-logging_sane_level = min(max(args.verbose, 0), len(logging_levels)-1)
+logging_sane_level = logging_levels.index(logging.ERROR)
+if args.verbose:
+    logging_sane_level = min(max(args.verbose, 0), len(logging_levels)-1)
 logging.basicConfig(level=logging_levels[logging_sane_level])
 logging.info("Logging level: %s" % (
     logging.getLevelName(logging.getLogger().getEffectiveLevel())));
