@@ -15,7 +15,9 @@ args = parser.parse_args()
 
 # configure logging
 logging_levels = [logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG]
-logging_sane_level = min(max(args.verbose, 0), len(logging_levels)-1)
+logging_sane_level = logging_levels.index(logging.ERROR)
+if args.verbose:
+    logging_sane_level = min(max(args.verbose, 0), len(logging_levels)-1)
 logging.basicConfig(level=logging_levels[logging_sane_level])
 logging.info("Logging level: %s" % (
     logging.getLevelName(logging.getLogger().getEffectiveLevel())));
@@ -47,7 +49,7 @@ logging.debug("Got Base64: %s" % (base64data))
 
 dat.close()
 
-raw = base64.b64decode(base64data)
+raw = base64.b64decode(bytearray(base64data, "ascii"))
 logging.debug("Raw DER: %s" % (repr(raw)))
 logging.info("Read %d bytes." % len(raw))
 der.readDer([ord(x) for x in raw])
