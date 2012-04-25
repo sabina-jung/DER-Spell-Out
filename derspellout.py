@@ -52,5 +52,8 @@ dat.close()
 raw = base64.b64decode(bytearray(base64data, "ascii"))
 logging.debug("Raw DER: %s" % (repr(raw)))
 logging.info("Read %d bytes." % len(raw))
-der.readDer([ord(x) for x in raw])
+# Python 2 bytearrays consist of strings
+if len(raw) > 0 and type(raw[0]) == str:
+    raw = [ord(x) for x in raw]
+der.readDer(raw)
 
