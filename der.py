@@ -3,7 +3,7 @@ import logging
 def byteListPrintables(bytes):
     """Return string of printable ASCII characters in a given byte array.
     
-    Similarly to many Hex-Editors, non-printable charaters are replaced
+    Similarly to many Hex-Editors, non-printable characters are replaced
     by an period.
     
     """    
